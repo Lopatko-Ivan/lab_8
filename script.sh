@@ -10,13 +10,15 @@ do
 	case "$item" in
 		1) 	echo "Текущий каталог:"
 			pwd;;
-		2) 	cd ..
+		2) 	cd ..;;
 		3) 	echo "Доступные каталоги:"
 			ls -l| tr -s ' ' ' '|grep '^d'|cut -f9 -d' '
 			echo "Введите каталог в который хотите перейти"
 			read dir
-			wrong="$(ls -l| tr -s ' ' ' '|grep '^d'|cut -f9 -d' '|grep "$dir")
-			if [[ "$wrong" = "" ]]
+
+			if [[ !  -d "$dir" ]]
+		#	wrong="$(ls -l| tr -s ' ' ' '|grep '^d'|cut -f9 -d' '|grep "$dir")
+		#	if  [[ "$wrong" = "" ]]
 			then
 				echo "Вы ввели неправильное имя каталога"
 			else
@@ -26,3 +28,4 @@ do
 	echo "Хотите продолжить работу с программой? [y/n]"
 	read agree
 done
+exit 0
